@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:padding="5dip"
+    android:layout_margin="10dip">
+
+    <TextView
+        android:id="@+id/title2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="Ardiente sartén de cobre con langostinos salteados con vino blanco, ajo y perejil"
+        android:textColor="#ffffff"
+        android:gravity="left|center"
+        android:textSize="15dip"
+        android:layout_weight="3" />
+
+
+    <TextView
+        android:id="@+id/precio"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:text="S/. 35.00"
+        android:lines="1"
+        android:textColor="#ffffff"
+        android:gravity="right|center"
+        android:textSize="15dip"
+        android:layout_weight="1" />
+
+
+</LinearLayout>
