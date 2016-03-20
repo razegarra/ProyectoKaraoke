@@ -2,12 +2,9 @@ package com.example.android.proyectokaraoke;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ListAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
 
 import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
 
@@ -16,12 +13,17 @@ import java.util.List;
 
 public class PiqueoCatalogoActivity extends AppCompatActivity {
 
+    RecyclerView recyclerView;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_piqueo_catalogo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        recyclerView = (RecyclerView) findViewById(R.id.listapiqueo);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         final String[] titulo = {"Camarones al mojo de ajo", "Cocktail de langostinos", "Pulpo a la vinagreta", "Almejas a la marinera",
                 "Piqueo Marino Frío", "Piqueo Marino Caliente", "Piqueo de Tiraditos", "Piqueo rustico",
@@ -51,19 +53,10 @@ public class PiqueoCatalogoActivity extends AppCompatActivity {
             listaData.add(catalogoPiqueo);
         }
 
-        ListAdapter adapter = new AdapterCustom
-                (this, R.layout.itemlist, listaData);
+        RecyclerView.Adapter adapter= new AdapterRecyclerCustom(this,listaData);
+        recyclerView.setAdapter(adapter);
 
-        ListView listapiqueos = (ListView) findViewById(R.id.listapiqueo);
 
-        listapiqueos.setAdapter(adapter);
-        listapiqueos.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                                @Override
-                                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                                    String comida = titulo[position];
-                                                    Toast.makeText(getApplicationContext(), "Comida Seleccionada: " + comida, Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
         );
 
 

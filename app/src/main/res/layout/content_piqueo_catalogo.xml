@@ -12,11 +12,9 @@
     tools:context="com.example.android.proyectokaraoke.PiqueoCatalogoActivity"
     tools:showIn="@layout/activity_piqueo_catalogo">
 
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listapiqueo"
-        >
-
-    </ListView>
+        android:id="@+id/listapiqueo">
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>
