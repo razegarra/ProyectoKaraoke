@@ -4,4 +4,5 @@
     <string name="title_activity_piqueo_catalogo">PiqueoCatalogoActivity</string>
     <string name="title_activity_ubicame">UbicameActivity</string>
     <string name="title_activity_reservar_mesa">ReservarMesaActivity</string>
+    <string name="title_activity_bienvenida">Bienvenida</string>
 </resources>

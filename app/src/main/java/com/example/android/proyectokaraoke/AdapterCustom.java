@@ -32,7 +32,7 @@ public class AdapterCustom extends ArrayAdapter {
         TextView txtDescripcion = (TextView) view.findViewById(R.id.descripcion);
         TextView txtPrecio = (TextView) view.findViewById(R.id.precio);
 
-        imgComida.setImageResource(catalogoPiqueo.getImagen());
+       imgComida.setImageResource(catalogoPiqueo.getImagen());
         txtTitulo.setText(catalogoPiqueo.getTitulo());
         txtDescripcion.setText(catalogoPiqueo.getDescripcion());
         txtPrecio.setText(catalogoPiqueo.getPrecio());

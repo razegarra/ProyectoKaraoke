@@ -11,8 +11,7 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name=".PiqueoCatalogoActivity"
             android:label="@string/title_activity_piqueo_catalogo"
@@ -22,7 +21,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
         <activity
             android:name=".UbicameActivity"
@@ -31,12 +29,11 @@
         <activity
             android:name=".ReservarMesaActivity"
             android:label="@string/title_activity_reservar_mesa"
-            android:theme="@style/AppTheme.NoActionBar">
-
-
-
-
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity
+            android:name=".Bienvenida"
+            android:label="@string/title_activity_bienvenida"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>
