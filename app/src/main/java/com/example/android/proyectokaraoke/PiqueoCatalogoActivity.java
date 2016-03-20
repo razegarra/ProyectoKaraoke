@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
+import com.example.android.proyectokaraoke.Util.AdapterRecyclerPiqueoCustom;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,11 +54,11 @@ public class PiqueoCatalogoActivity extends AppCompatActivity {
             listaData.add(catalogoPiqueo);
         }
 
-        RecyclerView.Adapter adapter= new AdapterRecyclerCustom(this,listaData);
+        RecyclerView.Adapter adapter= new AdapterRecyclerPiqueoCustom(this,listaData);
         recyclerView.setAdapter(adapter);
 
 
-        );
+
 
 
     }
