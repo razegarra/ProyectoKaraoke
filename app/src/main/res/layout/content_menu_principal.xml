@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/principal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ELIGE UNA OPCION:" />
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/activity_vertical_margin"
+        android:orientation="vertical">
+
+
+        <Button
+            android:id="@+id/btnCatalogo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/catalogo"
+            android:onClick="true"/>
+
+        <Button
+            android:id="@+id/btnCanciones"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/canciones"
+            android:onClick="true"/>
+
+        <Button
+            android:id="@+id/btnFavoritos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/favoritos"
+            android:onClick="true"/>
+
+        <Button
+            android:id="@+id/btnPiqueos"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/piqueos"
+            android:onClick="true"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/ubicame"
+            android:onClick="true"/>
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
