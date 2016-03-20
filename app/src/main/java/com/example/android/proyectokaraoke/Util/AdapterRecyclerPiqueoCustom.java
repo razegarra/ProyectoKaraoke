@@ -17,35 +17,61 @@ import com.example.android.proyectokaraoke.R;
 import java.util.List;
 
 /**
- * Created by USUARIO1 on 19/03/2016.
+ * Created by Richard Zegarra on 19/03/2016.
  */
-public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRecyclerPiqueoCustom.CustomViewHolder> {
-    Context context;  List<CatalogoPiqueo> listaPiqueo;
+public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRecyclerPiqueoCustom.ViewHolder> {
+    Context context;
+    List<CatalogoPiqueo> listaPiqueo;
+
+    public static final int LISTA = 0;
+    public static final int CATEGORIA = 1;
 
     public AdapterRecyclerPiqueoCustom(Context context, List<CatalogoPiqueo> listaPiqueo) {
         this.context = context;
-        this.listaPiqueo=listaPiqueo;
+        this.listaPiqueo = listaPiqueo;
     }
 
     @Override
-    public CustomViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).
-                inflate(R.layout.list_row_piqueo, null);
-        CustomViewHolder customViewHolder = new CustomViewHolder(view);
-        Log.d("AppRecycler-Create", "create");
-        return customViewHolder;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View v;
+        if (viewType == LISTA) {
+            v = LayoutInflater.from(context).
+                    inflate(R.layout.list_row_piqueo, null);
+
+            return new CustomViewHolder(v);
+        } else {
+            v = LayoutInflater.from(context).inflate(R.layout.list_row_piqueo_cat, null);
+            return new CatalogoViewHolder(v);
+        }
+
     }
 
-    @Override
-    public void onBindViewHolder(CustomViewHolder viewHolder, int position) {
+    public void onBindViewHolder(ViewHolder viewHolder, int position) {
+
         CatalogoPiqueo catalogoPiqueo = listaPiqueo.get(position);
-        viewHolder.imgImagen.setImageResource(catalogoPiqueo.getImagen());
-        viewHolder.txtTitulo.setText(catalogoPiqueo.getTitulo());
-        viewHolder.txtDescripcion.setText(catalogoPiqueo.getDescripcion());
-        viewHolder.txtPrecio.setText(catalogoPiqueo.getPrecio());
+
+        if (viewHolder.getItemViewType() == LISTA) {
+            CustomViewHolder holder = (CustomViewHolder) viewHolder;
+            holder.imgImagen.setImageResource(catalogoPiqueo.getImagen());
+            holder.txtTitulo.setText(catalogoPiqueo.getTitulo());
+            holder.txtDescripcion.setText(catalogoPiqueo.getDescripcion());
+            holder.txtPrecio.setText(catalogoPiqueo.getPrecio());
+        } else {
+            CatalogoViewHolder holder = (CatalogoViewHolder) viewHolder;
+            holder.txtTitulo.setText(catalogoPiqueo.getTitulo());
+        }
+
         Log.d("AppRecycler", "pos " + position);
     }
-    public class CustomViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+
+    public static class ViewHolder extends RecyclerView.ViewHolder {
+        public ViewHolder(View v) {
+            super(v);
+        }
+    }
+
+    public class CustomViewHolder extends ViewHolder implements View.OnClickListener {
         private ImageView imgImagen;
         private TextView txtTitulo;
         private TextView txtDescripcion;
@@ -70,9 +96,25 @@ public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRec
             Snackbar.make(v, "CatalogoPiqueo Seleccionado: " + catalogoPiqueo.getTitulo(), Snackbar.LENGTH_LONG).show();
         }
     }
-    @Override
-    public int getItemCount() {
-        return null==listaPiqueo? 0: listaPiqueo.size();
+
+
+    public class CatalogoViewHolder extends ViewHolder {
+        private TextView txtTitulo;
+
+        public CatalogoViewHolder(View view) {
+            super(view);
+            this.txtTitulo = (TextView) view.findViewById(R.id.title);
+        }
     }
 
+
+    @Override
+    public int getItemCount() {
+        return null == listaPiqueo ? 0 : listaPiqueo.size();
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        return listaPiqueo.get(position).isTipo() ? 1 : 0;
+    }
 }

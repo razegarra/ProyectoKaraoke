@@ -2,14 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="10dip"
     android:orientation="horizontal"
-    android:padding="5dp"
-    android:paddingBottom="15dp">
+    android:paddingTop="15dp"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/list_selector">
+        android:background="@drawable/list_selector"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        >
         <ImageView
             android:id="@+id/imgcomida"
             android:layout_width="90dp"
@@ -20,8 +24,9 @@
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="3"
-            android:orientation="vertical">
+            android:layout_weight="1"
+            android:orientation="vertical"
+            >
             <TextView
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
@@ -41,9 +46,9 @@
                 android:layout_toRightOf="@+id/imgcomida"
                 android:layout_weight="3"
                 android:gravity="left|center"
-                android:text="camaron fresco en gotas de limón con mantequilla, sal y ajos"
+                android:text="pulpo en aceite con cebolla, pimiento rojo y verde, vinagre y sal"
                 android:textColor="#FFFF"
-                android:textSize="12dp" />
+                android:textSize="13dp" />
         </LinearLayout>
         <TextView
             android:id="@+id/precio"

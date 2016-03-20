@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">Proyecto Karaoke</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_piqueo_catalogo">PiqueoCatalogoActivity</string>
-    <string name="title_activity_ubicame">UbicameActivity</string>
-    <string name="title_activity_reservar_mesa">ReservarMesaActivity</string>
+    <string name="title_activity_piqueo_catalogo">Catalogo de Piqueos</string>
+    <string name="title_activity_ubicame">Ubicame</string>
+    <string name="title_activity_reservar_mesa">Reservar Mesa</string>
     <string name="title_activity_bienvenida">Bienvenida</string>
     <string name="mesa">MESA A1KARAOKE</string>
     <string name="ingreso">Ingresar</string>

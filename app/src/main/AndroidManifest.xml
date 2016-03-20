@@ -16,7 +16,11 @@
             android:name=".PiqueoCatalogoActivity"
             android:label="@string/title_activity_piqueo_catalogo"
             android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".UbicameActivity"
@@ -29,12 +33,7 @@
         <activity
             android:name=".Bienvenida"
             android:label="@string/title_activity_bienvenida"
-            android:theme="@style/AppTheme.NoActionBar">
-        <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter> </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <activity
             android:name=".MenuPrincipal"
