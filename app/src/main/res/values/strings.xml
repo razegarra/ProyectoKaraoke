@@ -12,5 +12,6 @@
     <string name="favoritos">Mis favoritos</string>
     <string name="piqueos">Piqueos</string>
     <string name="ubicame">Ubicame</string>
+    <string name="ReservaMesa">Reserva Mesa</string>
     <string name="title_activity_menu_principal">MenuPrincipal</string>
 </resources>

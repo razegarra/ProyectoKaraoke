@@ -10,7 +10,8 @@ import android.view.View;
 import android.widget.Button;
 
 public class MenuPrincipal extends AppCompatActivity {
-private Button btnPiqueos ,btnCanciones;
+private Button btnPiqueos ,btnCanciones, btnReservaMesa;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +20,7 @@ private Button btnPiqueos ,btnCanciones;
 
         btnPiqueos = (Button) findViewById(R.id.btnPiqueos);
         btnCanciones = (Button) findViewById(R.id.btnCanciones);
+        btnReservaMesa = (Button)findViewById(R.id.btnReservaMesa);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -49,12 +51,29 @@ private Button btnPiqueos ,btnCanciones;
 
                 //Generando el pase de pantalla
                 Intent intent = new Intent(MenuPrincipal.this, PiqueoCatalogoActivity.class);
-                Intent intent1 = new Intent(MenuPrincipal.this,ReservarMesaActivity.class);
+
                 //Ejecutamos el pase
                 startActivity(intent);
             }
         });
 
+        btnReservaMesa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+        btnReservaMesa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Generando el pase de pantalla
+
+                Intent intent = new Intent(MenuPrincipal.this,ReservarMesaActivity.class);
+                //Ejecutamos el pase
+                startActivity(intent);
+            }
+        });
     }
 
 
