@@ -10,11 +10,13 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.android.proyectokaraoke.PiqueoCatalogoActivity"
-    tools:showIn="@layout/activity_piqueo_catalogo">
+    tools:showIn="@layout/activity_piqueo_catalogo"
+    android:background="@android:color/transparent">
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/listapiqueo">
+        android:id="@+id/listapiqueo"
+        android:background="@android:color/transparent">
     </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

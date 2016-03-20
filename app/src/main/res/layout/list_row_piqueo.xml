@@ -3,59 +3,54 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="10dip"
-
     android:orientation="horizontal"
     android:padding="5dp"
-    android:paddingBottom="15dp"
-    >
-
-    <ImageView
-        android:id="@+id/imgcomida"
-        android:layout_width="90dp"
-        android:layout_height="50dp"
-
-        android:scaleType="centerCrop"
-        android:src="@drawable/p1" />
-
+    android:paddingBottom="15dp">
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="3"
-        android:orientation="vertical">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/list_selector">
+        <ImageView
+            android:id="@+id/imgcomida"
+            android:layout_width="90dp"
+            android:layout_height="50dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/p1" />
 
-
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgcomida"
-            android:layout_weight="1"
-            android:gravity="left|center"
-            android:text="Camarones al mojo de ajo"
-            android:textSize="15dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/descripcion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/imgcomida"
             android:layout_weight="3"
-            android:gravity="left|center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgcomida"
+                android:layout_weight="1"
+                android:gravity="left|center"
+                android:text="Camarones al mojo de ajo"
+                android:textColor="#FFFF"
+                android:textSize="15dp"
+                android:textStyle="bold" />
 
-            android:text="camaron fresco en gotas de limón con mantequilla, sal y ajos"
-            android:textSize="12dp" />
-
+            <TextView
+                android:id="@+id/descripcion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/imgcomida"
+                android:layout_weight="3"
+                android:gravity="left|center"
+                android:text="camaron fresco en gotas de limón con mantequilla, sal y ajos"
+                android:textColor="#FFFF"
+                android:textSize="12dp" />
+        </LinearLayout>
+        <TextView
+            android:id="@+id/precio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="S/. 35.00"
+            android:textColor="#FFFF"
+            android:textSize="15dip" />
     </LinearLayout>
-
-
-    <TextView
-        android:id="@+id/precio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-
-        android:text="S/. 35.00"
-        android:textSize="15dip" />
-
 </LinearLayout>
