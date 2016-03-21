@@ -14,4 +14,5 @@
     <string name="ubicame">Ubicame</string>
     <string name="ReservaMesa">Reserva Mesa</string>
     <string name="title_activity_menu_principal">MenuPrincipal</string>
+    <string name="title_activity_main2">Main2Activity</string>
 </resources>

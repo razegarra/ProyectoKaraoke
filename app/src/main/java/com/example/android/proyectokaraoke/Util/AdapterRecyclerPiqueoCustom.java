@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
+import com.example.android.proyectokaraoke.PiqueoCatalogoActivity;
 import com.example.android.proyectokaraoke.R;
 
 
@@ -93,6 +94,7 @@ public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRec
         public void onClick(View v) {
             int position = getLayoutPosition();
             CatalogoPiqueo catalogoPiqueo = listaPiqueo.get(position);
+            //PiqueoCatalogoActivity.añadir();
             Snackbar.make(v, "CatalogoPiqueo Seleccionado: " + catalogoPiqueo.getTitulo(), Snackbar.LENGTH_LONG).show();
         }
     }
