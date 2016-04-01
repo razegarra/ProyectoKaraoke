@@ -21,7 +21,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PiqueoCatalogoActivity extends AppCompatActivity {
+public class PiqueoCatalogoActivity extends AppCompatActivity  {
 
     private int mNotificationsCount = 0;
     RecyclerView recyclerView;
