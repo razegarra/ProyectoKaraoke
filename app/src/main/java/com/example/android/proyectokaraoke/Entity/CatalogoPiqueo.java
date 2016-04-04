@@ -10,6 +10,17 @@ public class CatalogoPiqueo {
     private int imagen;
     private boolean tipo;
 
+    public CatalogoPiqueo(String titulo, String descripcion, String precio, int imagen, boolean tipo) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.tipo = tipo;
+    }
+
+    public CatalogoPiqueo() {
+    }
+
     public String getTitulo() {
         return titulo;
     }

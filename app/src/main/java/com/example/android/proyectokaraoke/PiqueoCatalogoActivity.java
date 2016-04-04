@@ -1,5 +1,7 @@
 package com.example.android.proyectokaraoke;
 
+import android.app.Dialog;
+import android.content.Context;
 import android.graphics.drawable.LayerDrawable;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -8,10 +10,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
+import com.example.android.proyectokaraoke.Entity.CatalogoPiqueoCompra;
 import com.example.android.proyectokaraoke.Util.AdapterRecyclerPiqueoCustom;
 import com.example.android.proyectokaraoke.Util.UtilPiqueoBadge;
 import com.google.android.gms.appindexing.Action;
@@ -24,11 +33,13 @@ import java.util.List;
 public class PiqueoCatalogoActivity extends AppCompatActivity  {
 
     private int mNotificationsCount = 0;
-    RecyclerView recyclerView;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
+    private List<CatalogoPiqueoCompra> compra;
+    CatalogoPiqueo seleccionado;
+    private RecyclerView recyclerView;
+    private final Context context = this;
+    private Button button;
+    private TextView texttotal;
+    private double precio;
     private GoogleApiClient client;
 
     @Override
@@ -37,16 +48,102 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
         setContentView(R.layout.activity_piqueo_catalogo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        compra = new ArrayList<CatalogoPiqueoCompra>();
         recyclerView = (RecyclerView) findViewById(R.id.listapiqueo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         RecyclerView.Adapter adapter = new AdapterRecyclerPiqueoCustom(this, llenarLista());
         recyclerView.setAdapter(adapter);
 
+        button = (Button) findViewById(R.id.buttonShowCustomDialog);
+
+        // add button listener
+        button.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                seleccionado = itemCatalogo(6);
+
+                // custom dialog
+                final Dialog dialog = new Dialog(context);
+                dialog.setContentView(R.layout.dialog_piqueo_catalogo);
+                dialog.setTitle("Pedido...");
+
+                // set the custom dialog components - text, image and button
+
+                TextView textproducto = (TextView) dialog.findViewById(R.id.textproducto);
+                textproducto.setText(seleccionado.getTitulo());
+                texttotal = (TextView) dialog.findViewById(R.id.texttotal);
+                texttotal.setText(seleccionado.getPrecio());
+                ImageView image = (ImageView) dialog.findViewById(R.id.imgcomida);
+                image.setImageResource(seleccionado.getImagen());
+                precio = Double.parseDouble(seleccionado.getPrecio().replace("S/.","").trim());
+
+                Button dialogButtonMas = (Button) dialog.findViewById(R.id.buttonMas);
+                Button dialogButtonMenos = (Button) dialog.findViewById(R.id.buttonMenos);
+                Button dialogButtonCancelar = (Button) dialog.findViewById(R.id.buttonCancelar);
+                Button dialogButtonGrabar = (Button) dialog.findViewById(R.id.buttonGrabar);
+                // if button is clicked, close the custom dialog
+                dialogButtonCancelar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.dismiss();
+                    }
+                });
+
+                dialogButtonMas.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText cantidad = (EditText) dialog.findViewById(R.id.editTextCantidad);
+
+                        int n = Integer.parseInt(cantidad.getText().toString());
+                        if(n<20) {
+                            n = n + 1;
+                            cantidad.setText(""+n);
+                            texttotal.setText("S/. "+precio * ((double) n));
+                        }
+                    }
+                });
+
+                dialogButtonMenos.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText cantidad = (EditText) dialog.findViewById(R.id.editTextCantidad);
+                        int n = Integer.parseInt(cantidad.getText().toString());
+                        if(n>1) {
+                            n = n - 1;
+                            cantidad.setText(""+n);
+                            texttotal.setText("S/. "+precio * ((double) n));
+                        }
+                    }
+                });
+
+                dialogButtonGrabar.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        EditText cantidad = (EditText) dialog.findViewById(R.id.editTextCantidad);
+                        int n = Integer.parseInt(cantidad.getText().toString());
+                        compra.add(new CatalogoPiqueoCompra(seleccionado.getTitulo(),seleccionado.getDescripcion(),seleccionado.getPrecio(),
+                                seleccionado.getImagen(),seleccionado.isTipo(),n,precio * ((double) n)));
+                        updateNotificationsBadge(mNotificationsCount + 1);
+                        dialog.dismiss();
+                    }
+                });
+
+                dialog.show();
+            }
+        });
+
+
+
         // ATTENTION: This was auto-generated to implement the App Indexing API.
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+    }
+
+    private CatalogoPiqueo itemCatalogo(int index){
+        return llenarLista().get(index);
     }
 
 
@@ -95,12 +192,14 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
         return true;
     }
 
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_cart) {
-            mNotificationsCount++; // se ha de implementar el Handler
-            updateNotificationsBadge(mNotificationsCount);
+
+
+
             return true;
         }
         return super.onOptionsItemSelected(item);
