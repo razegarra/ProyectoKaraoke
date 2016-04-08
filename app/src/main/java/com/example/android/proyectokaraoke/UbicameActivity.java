@@ -1,5 +1,8 @@
 package com.example.android.proyectokaraoke;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -42,5 +45,17 @@ public class UbicameActivity extends FragmentActivity implements OnMapReadyCallb
         LatLng lima = new LatLng(-12.136605, -77.006035);
         mMap.addMarker(new MarkerOptions().position(lima).title("Marker in Lima"));
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lima, 17.0f));
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            // TODO: Consider calling
+            //    ActivityCompat#requestPermissions
+            // here to request the missing permissions, and then overriding
+            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
+            //                                          int[] grantResults)
+            // to handle the case where the user grants the permission. See the documentation
+            // for ActivityCompat#requestPermissions for more details.
+            return;
+        }
+        mMap.setMyLocationEnabled(true);
+
     }
 }
