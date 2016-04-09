@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -187,8 +188,9 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
 
         // custom dialog
         final Dialog dialog = new Dialog(context);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.dialog_piqueo_catalogo);
-        dialog.setTitle("Pedido...");
+        //dialog.
 
         // set the custom dialog components - text, image and button
 

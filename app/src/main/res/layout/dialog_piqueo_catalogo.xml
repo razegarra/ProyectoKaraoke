@@ -2,23 +2,66 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorPrimaryDark"
-    android:padding="15dp">
+    android:background="@drawable/stylecuadros">
 
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:text="Producto:"/>
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textproducto"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="#FFF"
-        android:textSize="20dp"
-        android:textStyle="bold"
-        android:text="Almejas a la marinera"/>
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_dialog"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#fff"
+                android:text="Producto:"
+                android:layout_marginBottom="5dp"/>
+
+            <TextView
+                android:id="@+id/textproducto"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:layout_weight="2"
+                android:textColor="#fff"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:text="Almejas a la marinera"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
+
+    <View android:id="@+id/titleDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#0CA680" />
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="15dp"
+    android:paddingLeft="15dp"
+    android:paddingRight="15dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -82,7 +125,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="#FFF"
-                    android:textSize="15dp"
+                    android:textSize="12dp"
                     android:textStyle="bold"
                     android:text="Total pedido: "/>
 
@@ -132,4 +175,5 @@
 
 
 
+</LinearLayout>
 </LinearLayout>

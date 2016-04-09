@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:thickness="0dp"
+    android:shape="rectangle">
+    <solid android:color="@color/place_autocomplete_prediction_primary_text"/>
+    <stroke
+        android:color="#0CA680"
+        android:width="2dp" />
+
+</shape>
