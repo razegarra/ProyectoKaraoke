@@ -59,7 +59,10 @@
             android:orientation="horizontal">
 
 
-
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/listapiqueoconfirm"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
         </LinearLayout>
 
@@ -100,14 +103,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/buttonCancelar"
+                android:id="@+id/buttonCancelarConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Cancelar" />
 
             <Button
-                android:id="@+id/buttonGrabar"
+                android:id="@+id/buttonGrabarConfirm"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
