@@ -2,83 +2,116 @@ package com.example.android.proyectokaraoke;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class MenuPrincipal extends AppCompatActivity {
-private Button btnPiqueos ,btnCanciones, btnReservaMesa;
-
+    DrawerLayout drawerLayout;
+    Toolbar toolbar;
+    ActionBar actionBar;
+    TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
 
-        btnPiqueos = (Button) findViewById(R.id.btnPiqueos);
-        btnCanciones = (Button) findViewById(R.id.btnCanciones);
-        btnReservaMesa = (Button)findViewById(R.id.btnReservaMesa);
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        actionBar = getSupportActionBar();
+        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu_white_24dp);
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+        if (navigationView != null) {
+            setupNavigationDrawerContent(navigationView);
+        }
+
+        setupNavigationDrawerContent(navigationView);
+
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        //Evento click del boton mostrar el cual cargara la información en un toast
-        btnPiqueos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        btnPiqueos.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Generando el pase de pantalla
-                Intent intent = new Intent(MenuPrincipal.this, PiqueoCatalogoActivity.class);
-
-                //Ejecutamos el pase
-                startActivity(intent);
-            }
-        });
-
-        btnReservaMesa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        btnReservaMesa.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //Generando el pase de pantalla
-
-                Intent intent = new Intent(MenuPrincipal.this,ReservarMesaActivity.class);
-                //Ejecutamos el pase
-                startActivity(intent);
-            }
-        });
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                drawerLayout.openDrawer(GravityCompat.START);
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
+    private void setupNavigationDrawerContent(NavigationView navigationView) {
+        navigationView.setNavigationItemSelectedListener(
+                new NavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(MenuItem menuItem) {
+                        textView = (TextView) findViewById(R.id.textView);
+                        switch (menuItem.getItemId()) {
+                            case R.id.item_navigation_drawer_inbox:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.item_navigation_drawer_starred:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.item_navigation_drawer_sent_mail:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.item_navigation_drawer_drafts:
+                                menuItem.setChecked(true);
+                                textView.setText(menuItem.getTitle());
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                return true;
+                            case R.id.item_piqueo:
+                                menuItem.setChecked(true);
+                                //  textView.setText(menuItem.getTitle());
+                                //  Toast.makeText(MenuPrincipal.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Intent intent = new Intent(MenuPrincipal.this, PiqueoCatalogoActivity.class);
+                                startActivity(intent);
+                                return true;
+                            case R.id.item_reserva:
+                                menuItem.setChecked(true);
+                                //Toast.makeText(MenuPrincipal.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Intent intent2 = new Intent(MenuPrincipal.this, ReservarMesaActivity.class);
+                                startActivity(intent2);
+                                return true;
 
-
-
-
+                            case R.id.item_Ubicacion:
+                                menuItem.setChecked(true);
+                                //Toast.makeText(MenuPrincipal.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Intent intent3 = new Intent(MenuPrincipal.this, UbicameActivity.class);
+                                startActivity(intent3);
+                                return true;
+                        }
+                        return true;
+                    }
+                });
+    }
 }

@@ -25,7 +25,6 @@ import android.widget.TextView;
 
 import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
 import com.example.android.proyectokaraoke.Entity.CatalogoPiqueoCompra;
-import com.example.android.proyectokaraoke.Util.AdapterRPiqueoC;
 import com.example.android.proyectokaraoke.Util.AdapterRecyclerPiqueoCustom;
 import com.example.android.proyectokaraoke.Util.UtilPiqueoBadge;
 import com.google.android.gms.appindexing.Action;
@@ -130,7 +129,7 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
         int id = item.getItemId();
         if (id == R.id.action_cart) {
 
-            llamarConfirmacion();
+
 
             return true;
         }
@@ -252,67 +251,6 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
                 compra.add(new CatalogoPiqueoCompra(seleccionado.getTitulo(),seleccionado.getDescripcion(),seleccionado.getPrecio(),
                         seleccionado.getImagen(),seleccionado.isTipo(),n,precio * ((double) n)));
                 updateNotificationsBadge(mNotificationsCount + 1);
-                dialog.dismiss();
-            }
-        });
-
-        dialog.show();
-    }
-
-    public void llamarConfirmacion() {
-
-        // custom dialog
-        final Dialog dialog = new Dialog(context);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.dialog_piqueo_catalogo_comfirm);
-        //dialog.
-
-        RecyclerView recyclerViewConfirm = (RecyclerView) findViewById(R.id.listapiqueoconfirm);
-
-        final LinearLayoutManager layoutManager = new LinearLayoutManager(dialog.getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-
-        recyclerViewConfirm.setLayoutManager(layoutManager);
-
-        //recyclerViewConfirm.setLayoutManager(new LinearLayoutManager(context));
-
-        AdapterRPiqueoC adapter = new AdapterRPiqueoC(dialog.getContext(), compra);
-
-        adapter.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-
-        recyclerView.setAdapter(adapter);
-
-        // la lista
-
-        //precio = Double.parseDouble(seleccionado.getPrecio().replace("S/.","").trim());
-
-
-
-        Button dialogButtonCancelar = (Button) dialog.findViewById(R.id.buttonCancelarConfirm);
-        Button dialogButtonGrabar = (Button) dialog.findViewById(R.id.buttonGrabarConfirm);
-        // if button is clicked, close the custom dialog
-        dialogButtonCancelar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mNotificationsCount=0;
-                updateNotificationsBadge(mNotificationsCount);
-                dialog.dismiss();
-            }
-        });
-
-        dialogButtonGrabar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                //enviar el pedido
-
-                mNotificationsCount=0;
-                updateNotificationsBadge(mNotificationsCount);
                 dialog.dismiss();
             }
         });

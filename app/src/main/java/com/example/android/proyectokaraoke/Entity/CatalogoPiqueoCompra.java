@@ -4,10 +4,10 @@ package com.example.android.proyectokaraoke.Entity;
  * Created by USUARIO1 on 03/04/2016.
  */
 public class CatalogoPiqueoCompra extends CatalogoPiqueo {
-    private int cantidad;
+    private double cantidad;
     private double subtotal;
 
-    public CatalogoPiqueoCompra(String titulo, String descripcion, String precio, int imagen, boolean tipo, int cantidad, double subtotal) {
+    public CatalogoPiqueoCompra(String titulo, String descripcion, String precio, int imagen, boolean tipo, double cantidad, double subtotal) {
         super(titulo, descripcion, precio, imagen, tipo);
         this.cantidad = cantidad;
         this.subtotal = subtotal;
@@ -17,11 +17,11 @@ public class CatalogoPiqueoCompra extends CatalogoPiqueo {
         super();
     }
 
-    public int getCantidad() {
+    public double getCantidad() {
         return cantidad;
     }
 
-    public void setCantidad(int cantidad) {
+    public void setCantidad(double cantidad) {
         this.cantidad = cantidad;
     }
 
