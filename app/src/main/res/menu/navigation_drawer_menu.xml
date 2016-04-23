@@ -8,7 +8,7 @@
             android:icon="@drawable/ic_inbox_black_24dp"
             android:title="Bienvenida" />
         <item
-            android:id="@+id/item_navigation_drawer_starred"
+            android:id="@+id/item_musicas"
             android:icon="@drawable/ic_audiotrack_black_24dp"
             android:title="Catalogo Musicas" />
         <item

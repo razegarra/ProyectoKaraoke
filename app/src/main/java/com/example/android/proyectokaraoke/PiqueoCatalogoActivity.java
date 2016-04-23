@@ -34,7 +34,7 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PiqueoCatalogoActivity extends AppCompatActivity  {
+public class PiqueoCatalogoActivity extends AppCompatActivity {
 
 
     private int mNotificationsCount = 0;
@@ -73,7 +73,7 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
-    private CatalogoPiqueo itemCatalogo(int index){
+    private CatalogoPiqueo itemCatalogo(int index) {
         return llenarLista().get(index);
     }
 
@@ -128,7 +128,6 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_cart) {
-
 
 
             return true;
@@ -200,7 +199,7 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
         texttotal.setText(seleccionado.getPrecio());
         ImageView image = (ImageView) dialog.findViewById(R.id.imgcomida);
         image.setImageResource(seleccionado.getImagen());
-        precio = Double.parseDouble(seleccionado.getPrecio().replace("S/.","").trim());
+        precio = Double.parseDouble(seleccionado.getPrecio().replace("S/.", "").trim());
 
         Button dialogButtonMas = (Button) dialog.findViewById(R.id.buttonMas);
         Button dialogButtonMenos = (Button) dialog.findViewById(R.id.buttonMenos);
@@ -221,10 +220,10 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
                 EditText cantidad = (EditText) dialog.findViewById(R.id.editTextCantidad);
 
                 int n = Integer.parseInt(cantidad.getText().toString());
-                if(n<20) {
+                if (n < 20) {
                     n = n + 1;
-                    cantidad.setText(""+n);
-                    texttotal.setText("S/. "+precio * ((double) n));
+                    cantidad.setText("" + n);
+                    texttotal.setText("S/. " + precio * ((double) n));
                 }
             }
         });
@@ -235,10 +234,10 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 EditText cantidad = (EditText) dialog.findViewById(R.id.editTextCantidad);
                 int n = Integer.parseInt(cantidad.getText().toString());
-                if(n>1) {
+                if (n > 1) {
                     n = n - 1;
-                    cantidad.setText(""+n);
-                    texttotal.setText("S/. "+precio * ((double) n));
+                    cantidad.setText("" + n);
+                    texttotal.setText("S/. " + precio * ((double) n));
                 }
             }
         });
@@ -248,8 +247,8 @@ public class PiqueoCatalogoActivity extends AppCompatActivity  {
             public void onClick(View v) {
                 EditText cantidad = (EditText) dialog.findViewById(R.id.editTextCantidad);
                 int n = Integer.parseInt(cantidad.getText().toString());
-                compra.add(new CatalogoPiqueoCompra(seleccionado.getTitulo(),seleccionado.getDescripcion(),seleccionado.getPrecio(),
-                        seleccionado.getImagen(),seleccionado.isTipo(),n,precio * ((double) n)));
+                compra.add(new CatalogoPiqueoCompra(seleccionado.getTitulo(), seleccionado.getDescripcion(), seleccionado.getPrecio(),
+                        seleccionado.getImagen(), seleccionado.isTipo(), n, precio * ((double) n)));
                 updateNotificationsBadge(mNotificationsCount + 1);
                 dialog.dismiss();
             }

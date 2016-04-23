@@ -49,6 +49,11 @@
             android:name=".UbicameActivity"
             android:label="@string/title_activity_ubicame">
         </activity>
+        <activity
+            android:name=".MusicaActivity"
+            android:label="@string/title_activity_musicas"
+            android:theme="@style/AppTheme">
+        </activity>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

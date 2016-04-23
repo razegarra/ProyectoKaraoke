@@ -13,6 +13,8 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.android.proyectokaraoke.Entity.Musica;
+
 public class MenuPrincipal extends AppCompatActivity {
     DrawerLayout drawerLayout;
     Toolbar toolbar;
@@ -71,11 +73,11 @@ public class MenuPrincipal extends AppCompatActivity {
                                 textView.setText(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
-                            case R.id.item_navigation_drawer_starred:
+                            /*case R.id.item_navigation_drawer_starred:
                                 menuItem.setChecked(true);
                                 textView.setText(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
-                                return true;
+                                return true;*/
                             case R.id.item_navigation_drawer_sent_mail:
                                 menuItem.setChecked(true);
                                 textView.setText(menuItem.getTitle());
@@ -109,9 +111,23 @@ public class MenuPrincipal extends AppCompatActivity {
                                 Intent intent3 = new Intent(MenuPrincipal.this, UbicameActivity.class);
                                 startActivity(intent3);
                                 return true;
+                            case R.id.item_musicas:
+                                menuItem.setChecked(true);
+                                //Toast.makeText(MenuPrincipal.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
+                                drawerLayout.closeDrawer(GravityCompat.START);
+                                Intent intent4 = new Intent(MenuPrincipal.this, MusicaActivity.class);
+                                startActivity(intent4);
+                                return true;
                         }
                         return true;
-                    }
+
+
+
+                        }
+
+
+
+
                 });
     }
 }
