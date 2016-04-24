@@ -12,5 +12,5 @@ public interface PiqueoConfirmDao {
 
     public List<PiqueoConfirm> piqueoConfirmLista();
 
-    public int piqueoConfirmInsert(PiqueoConfirm piqueoConfirm);
+    public long piqueoConfirmInsert(PiqueoConfirm piqueoConfirm);
 }

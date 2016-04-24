@@ -6,5 +6,5 @@ import com.example.android.proyectokaraoke.Entity.Reserva;
  * Created by USUARIO1 on 24/04/2016.
  */
 public interface ReservaDao {
-    public int catalogoInsert(Reserva reserva);
+    public long catalogoInsert(Reserva reserva);
 }

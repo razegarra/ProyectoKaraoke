@@ -10,7 +10,9 @@ import java.util.List;
 public interface MusicaFavoritaDao {
     void musicaFavoritaRead(MusicaFavorita musica);
 
+    public int musicaFavoritaExiste(Long id);
+
     public List<MusicaFavorita> musicaFavoritaLista();
 
-    public int musicaFavoritaInsert(MusicaFavorita musica);
+    public long musicaFavoritaInsert(MusicaFavorita musica);
 }

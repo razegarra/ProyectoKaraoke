@@ -1,5 +1,7 @@
 package com.example.android.proyectokaraoke.Entity;
 
+import android.graphics.Bitmap;
+
 /**
  * Created by Richard Zegarra on 18/03/2016.
  */
@@ -7,15 +9,21 @@ public class Piqueo {
     private String titulo;
     private String descripcion;
     private String precio;
-    private int imagen;
+    private String imagen;
     private boolean tipo;
 
-    public Piqueo(String titulo, String descripcion, String precio, int imagen, boolean tipo) {
+    public Piqueo(String titulo, String descripcion, String precio, String imagen, boolean tipo) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.precio = precio;
         this.imagen = imagen;
         this.tipo = tipo;
+    }
+
+    public Piqueo(String titulo, String descripcion, String precio) {
+        this.titulo = titulo;
+        this.descripcion = descripcion;
+        this.precio = precio;
     }
 
     public Piqueo() {
@@ -37,11 +45,11 @@ public class Piqueo {
         this.descripcion = descripcion;
     }
 
-    public int getImagen() {
+    public String getImagen() {
         return imagen;
     }
 
-    public void setImagen(int imagen) {
+    public void setImagen(String imagen) {
         this.imagen = imagen;
     }
 

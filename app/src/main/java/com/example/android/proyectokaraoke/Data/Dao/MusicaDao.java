@@ -12,6 +12,6 @@ public interface MusicaDao {
 
     public List<Musica> musicaLista();
 
-    public int musicaInsert(Musica musica);
+    public long musicaInsert(Musica musica);
 }
 

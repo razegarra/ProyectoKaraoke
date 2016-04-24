@@ -7,7 +7,7 @@ public class MusicaEnviada extends Musica {
 
     private Long id;
 
-    public MusicaEnviada(String titulo, String cantante, Long id, String genero) {
+    public MusicaEnviada(Long id, String titulo, String cantante, String genero) {
         super(titulo, cantante, genero);
         this.id = id;
     }
