@@ -3,14 +3,14 @@ package com.example.android.proyectokaraoke.Entity;
 /**
  * Created by Richard Zegarra on 18/03/2016.
  */
-public class CatalogoPiqueo {
+public class Piqueo {
     private String titulo;
     private String descripcion;
     private String precio;
     private int imagen;
     private boolean tipo;
 
-    public CatalogoPiqueo(String titulo, String descripcion, String precio, int imagen, boolean tipo) {
+    public Piqueo(String titulo, String descripcion, String precio, int imagen, boolean tipo) {
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -18,7 +18,7 @@ public class CatalogoPiqueo {
         this.tipo = tipo;
     }
 
-    public CatalogoPiqueo() {
+    public Piqueo() {
     }
 
     public String getTitulo() {

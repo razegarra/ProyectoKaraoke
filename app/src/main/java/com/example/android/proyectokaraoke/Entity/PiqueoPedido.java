@@ -1,19 +1,19 @@
 package com.example.android.proyectokaraoke.Entity;
 
 /**
- * Created by USUARIO1 on 03/04/2016.
+ * Created by USUARIO1 on 23/04/2016.
  */
-public class CatalogoPiqueoCompra extends CatalogoPiqueo {
+public class PiqueoPedido extends Piqueo {
     private double cantidad;
     private double subtotal;
 
-    public CatalogoPiqueoCompra(String titulo, String descripcion, String precio, int imagen, boolean tipo, double cantidad, double subtotal) {
+    public PiqueoPedido(String titulo, String descripcion, String precio, int imagen, boolean tipo, double cantidad, double subtotal) {
         super(titulo, descripcion, precio, imagen, tipo);
         this.cantidad = cantidad;
         this.subtotal = subtotal;
     }
 
-    public CatalogoPiqueoCompra() {
+    public PiqueoPedido() {
         super();
     }
 

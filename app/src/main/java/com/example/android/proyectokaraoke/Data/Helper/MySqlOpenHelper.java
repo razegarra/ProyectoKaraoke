@@ -4,14 +4,10 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import com.example.android.proyectokaraoke.Data.DBContract.CatPiqueoConfirmDBContract;
-import com.example.android.proyectokaraoke.Data.DBContract.CatPiqueoDBContract;
-import com.example.android.proyectokaraoke.Data.Dao.CatPiqueoDao;
-import com.example.android.proyectokaraoke.Data.SQLite.CatPiqueoSQLite;
-import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.example.android.proyectokaraoke.Data.DBContract.PiqueoDBContract;
+import com.example.android.proyectokaraoke.Data.Dao.PiqueoDao;
+import com.example.android.proyectokaraoke.Data.SQLite.PiqueoSQLite;
+import com.example.android.proyectokaraoke.Entity.Piqueo;
 
 /**
  * Created by USUARIO1 on 22/04/2016.
@@ -30,40 +26,41 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String sql ="CREATE TABLE "+ CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.TABLE_NAME+" ("+
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry._ID + " INTEGER PRIMARY KEY, " +
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.COLUMN_TITULO + " TEXT NOT NULL, " +
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.COLUMN_DESCRIPCION + " TEXT NOT NULL, " +
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.COLUMN_PRECIO + " DOUBLE NOT NULL, " +
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.COLUMN_CANTIDAD + " DOUBLE NOT NULL, " +
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.COLUMN_TIPO + " INTEGER NOT NULL, " +
-                CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.COLUMN_SUBTOTAL + " DOUBLE NOT NULL) ";
+
+        String sql ="CREATE TABLE "+ PiqueoDBContract.Piqueo.TABLE_NAME+" ("+
+                PiqueoDBContract.Piqueo._ID + " INTEGER PRIMARY KEY, " +
+                PiqueoDBContract.Piqueo.COLUMN_TITULO + " TEXT NOT NULL, " +
+                PiqueoDBContract.Piqueo.COLUMN_DESCRIPCION + " TEXT NOT NULL, " +
+                PiqueoDBContract.Piqueo.COLUMN_PRECIO + " DOUBLE NOT NULL, " +
+                PiqueoDBContract.Piqueo.COLUMN_TIPO + " INTEGER NOT NULL, " +
+                PiqueoDBContract.Piqueo.COLUMN_IMAGEN + " BLOB) ";
         db.execSQL(sql);
 
-        sql ="CREATE TABLE "+ CatPiqueoDBContract.CatPiqueoEntry.TABLE_NAME+" ("+
-                CatPiqueoDBContract.CatPiqueoEntry._ID + " INTEGER PRIMARY KEY, " +
-                CatPiqueoDBContract.CatPiqueoEntry.COLUMN_TITULO + " TEXT NOT NULL, " +
-                CatPiqueoDBContract.CatPiqueoEntry.COLUMN_DESCRIPCION + " TEXT NOT NULL, " +
-                CatPiqueoDBContract.CatPiqueoEntry.COLUMN_PRECIO + " DOUBLE NOT NULL, " +
-                CatPiqueoDBContract.CatPiqueoEntry.COLUMN_TIPO + " INTEGER NOT NULL, " +
-                CatPiqueoDBContract.CatPiqueoEntry.COLUMN_IMAGEN + " BLOB) ";
+        sql ="CREATE TABLE "+ PiqueoDBContract.PiqueoConfirm.TABLE_NAME+" ("+
+                PiqueoDBContract.PiqueoConfirm._ID + " INTEGER PRIMARY KEY, " +
+                PiqueoDBContract.PiqueoConfirm.COLUMN_TITULO + " TEXT NOT NULL, " +
+                PiqueoDBContract.PiqueoConfirm.COLUMN_DESCRIPCION + " TEXT NOT NULL, " +
+                PiqueoDBContract.PiqueoConfirm.COLUMN_PRECIO + " DOUBLE NOT NULL, " +
+                PiqueoDBContract.PiqueoConfirm.COLUMN_CANTIDAD + " DOUBLE NOT NULL, " +
+                PiqueoDBContract.PiqueoConfirm.COLUMN_TIPO + " INTEGER NOT NULL, " +
+                PiqueoDBContract.PiqueoConfirm.COLUMN_SUBTOTAL + " DOUBLE NOT NULL) ";
         db.execSQL(sql);
 
-        llenado(db);
+        llenadoPiqueo(db);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL( "DROP TABLE IF EXISTS " + CatPiqueoConfirmDBContract.CatPiqueoConfirmEntry.TABLE_NAME);
+        db.execSQL( "DROP TABLE IF EXISTS " + PiqueoDBContract.PiqueoConfirm.TABLE_NAME);
         onCreate(db);
-        db.execSQL( "DROP TABLE IF EXISTS " + CatPiqueoDBContract.CatPiqueoEntry.TABLE_NAME);
+        db.execSQL( "DROP TABLE IF EXISTS " + PiqueoDBContract.Piqueo.TABLE_NAME);
         onCreate(db);
     }
 
-    private void llenado(SQLiteDatabase db){
+    private void llenadoPiqueo(SQLiteDatabase db){
 
-        CatPiqueoDao catPiqueoDAO = new CatPiqueoSQLite(context);
-        CatalogoPiqueo catalogoPiqueo;
+        PiqueoDao piqueoDAO = new PiqueoSQLite(context);
+        Piqueo piqueo;
 
         final String[] titulo = {"P R O M O C I O N E S", "Camarones al mojo de ajo", "Cocktail de langostinos", "Pulpo a la vinagreta", "CATALOGO KARAOKE", "Almejas a la marinera",
                 "Piqueo Marino Frío", "Piqueo Marino Caliente", "Piqueo de Tiraditos", "Piqueo rustico",
@@ -86,15 +83,21 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
 
         for (int i = 0; i < titulo.length; i++) {
 
-            catalogoPiqueo = new CatalogoPiqueo();
-            catalogoPiqueo.setTitulo(titulo[i]);
-            catalogoPiqueo.setDescripcion(descripcion[i]);
-            catalogoPiqueo.setPrecio(precio[i]);
-            catalogoPiqueo.setImagen(context.getResources().getIdentifier(imagenes[i], "drawable", context.getPackageName()));
-            catalogoPiqueo.setTipo(tipo[i]);
-            catPiqueoDAO.catalogoInsert(catalogoPiqueo);
+            piqueo = new Piqueo();
+            piqueo.setTitulo(titulo[i]);
+            piqueo.setDescripcion(descripcion[i]);
+            piqueo.setPrecio(precio[i]);
+            piqueo.setImagen(context.getResources().getIdentifier(imagenes[i], "drawable", context.getPackageName()));
+            piqueo.setTipo(tipo[i]);
+            piqueoDAO.catalogoInsert(piqueo);
 
         }
+
+
+
+    }
+
+    private void llenadoMusica(SQLiteDatabase db){
 
     }
 

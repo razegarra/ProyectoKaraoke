@@ -3,41 +3,41 @@ package com.example.android.proyectokaraoke.Data.SQLite;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 
-import com.example.android.proyectokaraoke.Data.Dao.CatPiqueoDao;
+import com.example.android.proyectokaraoke.Data.Dao.PiqueoDao;
 import com.example.android.proyectokaraoke.Data.Helper.MySqlOpenHelper;
-import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
+import com.example.android.proyectokaraoke.Entity.Piqueo;
 
 import java.util.List;
 
 /**
  * Created by USUARIO1 on 23/04/2016.
  */
-public class CatPiqueoSQLite implements CatPiqueoDao {
+public class PiqueoSQLite implements PiqueoDao {
 
     MySqlOpenHelper mySqlOpenHelper;
 
-    public CatPiqueoSQLite(Context context) {
+    public PiqueoSQLite(Context context) {
         mySqlOpenHelper = new MySqlOpenHelper(context);
         SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getWritableDatabase();
     }
 
     @Override
-    public void catalogoRead(CatalogoPiqueo catalogoPiqueo) {
+    public void catalogoRead(Piqueo piqueo) {
 
     }
 
     @Override
-    public List<CatalogoPiqueo> catalogoLista() {
+    public List<Piqueo> catalogoLista() {
         return null;
     }
 
     @Override
-    public int catalogoInsert(CatalogoPiqueo catalogoPiqueo) {
+    public int catalogoInsert(Piqueo piqueo) {
         return 0;
     }
 
     @Override
-    public long catalogoDelete(CatalogoPiqueo catalogoPiqueo) {
+    public long catalogoDelete(Piqueo piqueo) {
         return 0;
     }
 }
