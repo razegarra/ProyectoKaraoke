@@ -53,6 +53,11 @@ public class PiqueoCatalogoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_piqueo_catalogo);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle("Catálogo de piqueos");
+        toolbar.setSubtitle("Proyecto Karaoke");
+        toolbar.setLogo(R.drawable.icon_dialog);
+
+        
         compra = new ArrayList<CatalogoPiqueoCompra>();
         recyclerView = (RecyclerView) findViewById(R.id.listapiqueo);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
