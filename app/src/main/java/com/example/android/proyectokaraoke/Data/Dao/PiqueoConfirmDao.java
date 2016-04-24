@@ -10,6 +10,8 @@ import java.util.List;
 public interface PiqueoConfirmDao {
     void piqueoConfirmRead(PiqueoConfirm piqueoConfirm);
 
+    public int piqueoConfirmExiste(Long id);
+
     public List<PiqueoConfirm> piqueoConfirmLista();
 
     public long piqueoConfirmInsert(PiqueoConfirm piqueoConfirm);

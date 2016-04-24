@@ -6,13 +6,15 @@ import android.graphics.Bitmap;
  * Created by Richard Zegarra on 18/03/2016.
  */
 public class Piqueo {
+    private Long id;
     private String titulo;
     private String descripcion;
     private String precio;
     private String imagen;
     private boolean tipo;
 
-    public Piqueo(String titulo, String descripcion, String precio, String imagen, boolean tipo) {
+    public Piqueo(Long id, String titulo, String descripcion, String precio, String imagen, boolean tipo) {
+        this.id = id;
         this.titulo = titulo;
         this.descripcion = descripcion;
         this.precio = precio;
@@ -27,6 +29,14 @@ public class Piqueo {
     }
 
     public Piqueo() {
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getTitulo() {

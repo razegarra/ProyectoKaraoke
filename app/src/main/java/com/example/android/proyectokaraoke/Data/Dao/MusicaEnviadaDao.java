@@ -8,9 +8,9 @@ import java.util.List;
  * Created by USUARIO1 on 24/04/2016.
  */
 public interface MusicaEnviadaDao {
-    void musicaEnviadaRead(MusicaEnviada musica);
+    void musicaEnviadaRead(MusicaEnviada musicaEnviada);
 
     public List<MusicaEnviada> musicaEnviadaLista();
 
-    public long musicaEnviadaInsert(MusicaEnviada musica);
+    public long musicaEnviadaInsert(MusicaEnviada musicaEnviada);
 }

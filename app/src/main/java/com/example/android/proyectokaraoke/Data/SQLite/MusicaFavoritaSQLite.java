@@ -74,7 +74,7 @@ public class MusicaFavoritaSQLite implements MusicaFavoritaDao {
 
     @Override
     public long musicaFavoritaInsert(MusicaFavorita musicaFavorita) {
-        SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getReadableDatabase();
+        SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(MusicaDBContract.MusicaFavorita.COLUMN_ID, musicaFavorita.getId());
         contentValues.put(MusicaDBContract.MusicaFavorita.COLUMN_TITULO, musicaFavorita.getTitulo());
