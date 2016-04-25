@@ -75,4 +75,5 @@ public class MusicaSQLite implements MusicaDao {
         long row = sqLiteDatabase.insert(MusicaDBContract.Musica.TABLE_NAME, null, contentValues);
         return row;
     }
+
 }

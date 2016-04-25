@@ -1,7 +1,6 @@
 package com.example.android.proyectokaraoke.Util;
 
 import android.content.Context;
-import android.support.design.widget.Snackbar;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
-import com.example.android.proyectokaraoke.PiqueoCatalogoActivity;
+import com.example.android.proyectokaraoke.Entity.Piqueo;
 import com.example.android.proyectokaraoke.R;
 
 
@@ -22,15 +20,15 @@ import java.util.List;
  */
 public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRecyclerPiqueoCustom.ViewHolder> implements View.OnClickListener   {
     Context context;
-    List<CatalogoPiqueo> listaPiqueo;
+    List<Piqueo> piqueoLista;
 
     public static final int LISTA = 0;
     public static final int CATEGORIA = 1;
     private View.OnClickListener listener;
 
-    public AdapterRecyclerPiqueoCustom(Context context, List<CatalogoPiqueo> listaPiqueo) {
+    public AdapterRecyclerPiqueoCustom(Context context, List<Piqueo> piqueoLista) {
         this.context = context;
-        this.listaPiqueo = listaPiqueo;
+        this.piqueoLista = piqueoLista;
     }
 
     @Override
@@ -50,17 +48,17 @@ public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRec
 
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        CatalogoPiqueo catalogoPiqueo = listaPiqueo.get(position);
+        Piqueo piqueo = piqueoLista.get(position);
 
         if (viewHolder.getItemViewType() == LISTA) {
             CustomViewHolder holder = (CustomViewHolder) viewHolder;
-            holder.imgImagen.setImageResource(catalogoPiqueo.getImagen());
-            holder.txtTitulo.setText(catalogoPiqueo.getTitulo());
-            holder.txtDescripcion.setText(catalogoPiqueo.getDescripcion());
-            holder.txtPrecio.setText(catalogoPiqueo.getPrecio());
+            holder.imgImagen.setImageResource(context.getResources().getIdentifier(piqueo.getImagen(), "drawable", context.getPackageName()));
+            holder.txtTitulo.setText(piqueo.getTitulo());
+            holder.txtDescripcion.setText(piqueo.getDescripcion());
+            holder.txtPrecio.setText(piqueo.getPrecio());
         } else {
             CatalogoViewHolder holder = (CatalogoViewHolder) viewHolder;
-            holder.txtTitulo.setText(catalogoPiqueo.getTitulo());
+            holder.txtTitulo.setText(piqueo.getTitulo());
         }
 
         Log.d("AppRecycler", "pos " + position);
@@ -95,19 +93,8 @@ public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRec
             this.txtTitulo = (TextView) view.findViewById(R.id.title);
             this.txtDescripcion = (TextView) view.findViewById(R.id.descripcion);
             this.txtPrecio = (TextView) view.findViewById(R.id.precio);
-
-            //imgCatalogoPiqueo.setOnClickListener(this);
-            //view.setOnClickListener(this);
         }
 
-
-       /* @Override
-        public void onClick(View v) {
-            int position = getLayoutPosition();
-            CatalogoPiqueo catalogoPiqueo = listaPiqueo.get(position);
-            //PiqueoCatalogoActivity.añadir();
-            Snackbar.make(v, "CatalogoPiqueo Seleccionado: " + catalogoPiqueo.getTitulo(), Snackbar.LENGTH_LONG).show();
-        }*/
     }
 
 
@@ -123,11 +110,11 @@ public class AdapterRecyclerPiqueoCustom extends RecyclerView.Adapter<AdapterRec
 
     @Override
     public int getItemCount() {
-        return null == listaPiqueo ? 0 : listaPiqueo.size();
+        return null == piqueoLista ? 0 : piqueoLista.size();
     }
 
     @Override
     public int getItemViewType(int position) {
-        return listaPiqueo.get(position).isTipo() ? 1 : 0;
+        return piqueoLista.get(position).isTipo() ? 1 : 0;
     }
 }

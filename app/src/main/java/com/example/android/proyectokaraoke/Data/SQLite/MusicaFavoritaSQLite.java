@@ -70,7 +70,8 @@ public class MusicaFavoritaSQLite implements MusicaFavoritaDao {
 
         sqLiteDatabase.close();
 
-        return musicaFavoritaLista;    }
+        return musicaFavoritaLista;
+    }
 
     @Override
     public long musicaFavoritaInsert(MusicaFavorita musicaFavorita) {
@@ -83,5 +84,11 @@ public class MusicaFavoritaSQLite implements MusicaFavoritaDao {
 
         long row = sqLiteDatabase.insert(MusicaDBContract.MusicaFavorita.TABLE_NAME, null, contentValues);
         return row;
+    }
+
+    @Override
+    public boolean musicaFavoritaDelete(MusicaFavorita musica) {
+        SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getWritableDatabase();
+        return sqLiteDatabase.delete(MusicaDBContract.MusicaFavorita.TABLE_NAME, MusicaDBContract.MusicaFavorita.COLUMN_ID + "=" + musica.getId(), null) > 0;
     }
 }

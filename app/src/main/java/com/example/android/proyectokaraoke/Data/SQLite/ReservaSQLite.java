@@ -22,7 +22,7 @@ public class ReservaSQLite implements ReservaDao {
     }
 
     @Override
-    public int catalogoInsert(Reserva reserva) {
+    public long catalogoInsert(Reserva reserva) {
         return 0;
     }
 }

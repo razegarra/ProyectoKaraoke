@@ -9,8 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.android.proyectokaraoke.Entity.CatalogoPiqueo;
-import com.example.android.proyectokaraoke.Entity.CatalogoPiqueoCompra;
+import com.example.android.proyectokaraoke.Entity.Piqueo;
+import com.example.android.proyectokaraoke.Entity.PiqueoConfirm;
 import com.example.android.proyectokaraoke.R;
 
 import java.util.List;
@@ -20,10 +20,10 @@ import java.util.List;
  */
 public class AdapterRPiqueoC extends RecyclerView.Adapter<AdapterRPiqueoC.ViewHolder> implements View.OnClickListener   {
     Context context;
-    List<CatalogoPiqueoCompra> listaPiqueo;
+    List<PiqueoConfirm> listaPiqueo;
     private View.OnClickListener listener;
 
-    public AdapterRPiqueoC(Context context, List<CatalogoPiqueoCompra> listaPiqueo) {
+    public AdapterRPiqueoC(Context context, List<PiqueoConfirm> listaPiqueo) {
         this.context = context;
         this.listaPiqueo = listaPiqueo;
     }
@@ -38,7 +38,7 @@ public class AdapterRPiqueoC extends RecyclerView.Adapter<AdapterRPiqueoC.ViewHo
 
     public void onBindViewHolder(ViewHolder viewHolder, int position) {
 
-        CatalogoPiqueoCompra catalogoPiqueo = listaPiqueo.get(position);
+        PiqueoConfirm catalogoPiqueo = listaPiqueo.get(position);
         CustomViewHolder holder = (CustomViewHolder) viewHolder;
         holder.txtTitulo.setText(catalogoPiqueo.getTitulo());
         holder.txtCantidad.setText(String.valueOf(catalogoPiqueo.getCantidad())+" und");

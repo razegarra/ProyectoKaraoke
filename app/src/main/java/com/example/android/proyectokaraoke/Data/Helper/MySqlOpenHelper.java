@@ -80,6 +80,9 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
                 MusicaDBContract.MusicaEnviada.COLUMN_GENERO + " TEXT NOT NULL) ";
         db.execSQL(sql);
 
+        sql ="CREATE UNIQUE INDEX indexmusica ON musica (_id ASC)";
+        db.execSQL(sql);
+
         llenadoPiqueo(db);
         llenadoMusica(db);
     }
@@ -88,25 +91,26 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL( "DROP TABLE IF EXISTS " + PiqueoDBContract.PiqueoConfirm.TABLE_NAME);
         db.execSQL( "DROP TABLE IF EXISTS " + PiqueoDBContract.Piqueo.TABLE_NAME);
+        db.execSQL( "DROP INDEX indexmusica");
 
         onCreate(db);
     }
 
     private void llenadoPiqueo(SQLiteDatabase db){
         String sql;
-        List<Piqueo> listaPiqueo = InformacionBD.listaPiqueo(context);
+        List<Piqueo> listaPiqueo = InformacionBD.listaPiqueo();
         for (int i = 0; i < listaPiqueo.size(); i++) {
             sql = "INSERT INTO " + PiqueoDBContract.Piqueo.TABLE_NAME + " ("+
                     PiqueoDBContract.Piqueo.COLUMN_TITULO + ", " +
                     PiqueoDBContract.Piqueo.COLUMN_DESCRIPCION + ", " +
                     PiqueoDBContract.Piqueo.COLUMN_PRECIO + ", " +
                     PiqueoDBContract.Piqueo.COLUMN_TIPO + ", " +
-                    PiqueoDBContract.Piqueo.COLUMN_IMAGEN + ") VALUES ("+
-                    listaPiqueo.get(i).getTitulo()+ ", " +
-                    listaPiqueo.get(i).getDescripcion()+ ", " +
-                    listaPiqueo.get(i).getPrecio()+ ", " +
-                    (listaPiqueo.get(i).isTipo()?1:0)+ ", " +
-                    context.getResources().getIdentifier(listaPiqueo.get(i).getImagen(), "drawable", context.getPackageName())+")";
+                    PiqueoDBContract.Piqueo.COLUMN_IMAGEN + ") VALUES ('"+
+                    listaPiqueo.get(i).getTitulo()+ "', '" +
+                    listaPiqueo.get(i).getDescripcion()+ "', '" +
+                    listaPiqueo.get(i).getPrecio()+ "', " +
+                    (listaPiqueo.get(i).isTipo()?1:0)+ ", '" +
+                    listaPiqueo.get(i).getImagen()+"')";
             db.execSQL(sql);
         }
     }
@@ -118,10 +122,10 @@ public class MySqlOpenHelper extends SQLiteOpenHelper {
             sql = "INSERT INTO " + MusicaDBContract.Musica.TABLE_NAME + " ("+
                     MusicaDBContract.Musica.COLUMN_TITULO + ", " +
                     MusicaDBContract.Musica.COLUMN_CANTANTE + ", " +
-                    MusicaDBContract.Musica.COLUMN_GENERO + ") VALUES ("+
-                    listaMusica.get(i).getTitulo()+ ", " +
-                    listaMusica.get(i).getCantante()+ ", " +
-                    listaMusica.get(i).getGenero()+ ")";
+                    MusicaDBContract.Musica.COLUMN_GENERO + ") VALUES ('"+
+                    listaMusica.get(i).getTitulo()+ "', '" +
+                    listaMusica.get(i).getCantante()+ "', '" +
+                    listaMusica.get(i).getGenero()+ "')";
             db.execSQL(sql);
         }
     }

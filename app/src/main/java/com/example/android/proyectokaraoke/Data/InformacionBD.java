@@ -45,7 +45,7 @@ public class InformacionBD {
         return listaData;
     }
 
-    public static List<Piqueo> listaPiqueo(Context context) {
+    public static List<Piqueo> listaPiqueo() {
         Piqueo piqueo;
         List<Piqueo> piqueoLista = new ArrayList<>();
 

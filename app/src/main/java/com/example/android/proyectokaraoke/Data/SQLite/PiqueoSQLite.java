@@ -1,12 +1,16 @@
 package com.example.android.proyectokaraoke.Data.SQLite;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
+import com.example.android.proyectokaraoke.Data.DBContract.PiqueoDBContract;
 import com.example.android.proyectokaraoke.Data.Dao.PiqueoDao;
 import com.example.android.proyectokaraoke.Data.Helper.MySqlOpenHelper;
 import com.example.android.proyectokaraoke.Entity.Piqueo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,22 +26,61 @@ public class PiqueoSQLite implements PiqueoDao {
     }
 
     @Override
-    public void catalogoRead(Piqueo piqueo) {
+    public void piqueoRead(Piqueo piqueo) {
+        SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query(PiqueoDBContract.Piqueo.TABLE_NAME, null,
+                PiqueoDBContract.Piqueo._ID + "=?", new String[]{"" + piqueo.getId()}, null, null, null);
 
+        cursor.moveToFirst();
+        piqueo.setTitulo(
+                cursor.getString(
+                        cursor.getColumnIndex(
+                                PiqueoDBContract.Piqueo.COLUMN_TITULO)));
+        piqueo.setDescripcion(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_DESCRIPCION)));
+        piqueo.setPrecio(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_PRECIO)));
+        piqueo.setTipo(cursor.getInt(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_TIPO))==0?false:true);
+        piqueo.setImagen(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_IMAGEN)));
+        sqLiteDatabase.close();
     }
 
     @Override
-    public List<Piqueo> catalogoLista() {
-        return null;
+    public List<Piqueo> piqueoLista() {
+        SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getReadableDatabase();
+        Cursor cursor = sqLiteDatabase.query(PiqueoDBContract.Piqueo.TABLE_NAME, null, null, null, null, null, null);
+        List<Piqueo> piqueoLista = new ArrayList<>();
+        Piqueo piqueo;
+
+        cursor.moveToFirst();
+        do {
+            piqueo = new Piqueo();
+            piqueo.setId(cursor.getLong(cursor.getColumnIndex(PiqueoDBContract.Piqueo._ID)));
+            piqueo.setTitulo(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_TITULO)));
+            piqueo.setDescripcion(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_DESCRIPCION)));
+            piqueo.setPrecio(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_PRECIO)));
+            piqueo.setTipo(cursor.getInt(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_TIPO))==0?false:true);
+            piqueo.setImagen(cursor.getString(cursor.getColumnIndex(PiqueoDBContract.Piqueo.COLUMN_IMAGEN)));
+
+            piqueoLista.add(piqueo);
+        } while (cursor.moveToNext());
+
+        sqLiteDatabase.close();
+
+        return piqueoLista;
     }
 
     @Override
-    public int catalogoInsert(Piqueo piqueo) {
-        return 0;
+    public long piqueoInsert(Piqueo piqueo) {
+        SQLiteDatabase sqLiteDatabase = mySqlOpenHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(PiqueoDBContract.Piqueo.COLUMN_TITULO, piqueo.getTitulo());
+        contentValues.put(PiqueoDBContract.Piqueo.COLUMN_DESCRIPCION, piqueo.getDescripcion());
+        contentValues.put(PiqueoDBContract.Piqueo.COLUMN_PRECIO, piqueo.getPrecio());
+        contentValues.put(PiqueoDBContract.Piqueo.COLUMN_TIPO, piqueo.isTipo()?1:0);
+        contentValues.put(PiqueoDBContract.Piqueo.COLUMN_IMAGEN, piqueo.getTitulo());
+
+        long row = sqLiteDatabase.insert(PiqueoDBContract.Piqueo.TABLE_NAME, null, contentValues);
+        return row;
     }
 
-    @Override
-    public long catalogoDelete(Piqueo piqueo) {
-        return 0;
-    }
+
 }

@@ -15,4 +15,6 @@ public interface MusicaFavoritaDao {
     public List<MusicaFavorita> musicaFavoritaLista();
 
     public long musicaFavoritaInsert(MusicaFavorita musica);
+
+    public boolean musicaFavoritaDelete(MusicaFavorita musica);
 }

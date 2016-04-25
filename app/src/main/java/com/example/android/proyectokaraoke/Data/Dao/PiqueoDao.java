@@ -8,11 +8,10 @@ import java.util.List;
  * Created by USUARIO1 on 23/04/2016.
  */
 public interface PiqueoDao {
-    void catalogoRead(Piqueo piqueo);
+    void piqueoRead(Piqueo piqueo);
 
-    public List<Piqueo> catalogoLista();
+    public List<Piqueo> piqueoLista();
 
-    public int catalogoInsert(Piqueo piqueo);
+    public long piqueoInsert(Piqueo piqueo);
 
-    public long catalogoDelete(Piqueo piqueo);
 }
