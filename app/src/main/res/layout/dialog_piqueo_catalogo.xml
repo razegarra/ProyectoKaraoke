@@ -31,7 +31,7 @@
                 android:layout_width="wrap_content"
                 android:layout_weight="1"
                 android:textColor="#fff"
-                android:text="Producto:"
+                android:text="@string/producto"
                 android:layout_marginBottom="5dp"/>
 
             <TextView
@@ -127,12 +127,13 @@
                     android:textColor="#FFF"
                     android:textSize="12dp"
                     android:textStyle="bold"
-                    android:text="Total pedido: "/>
+                    android:text="@string/total_pedido"/>
 
                 <TextView
                     android:id="@+id/texttotal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:textColor="#FFF"
                     android:textSize="17dp"
                     android:textStyle="bold"
@@ -158,14 +159,14 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancelar"
+            android:text="@string/buttoncancelar"
             android:id="@+id/buttonCancelar"
             android:layout_weight="1"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Grabar"
+            android:text="@string/buttongrabar"
             android:id="@+id/buttonGrabar"
             android:layout_weight="1"/>
 

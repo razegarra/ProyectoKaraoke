@@ -2,120 +2,148 @@ package com.example.android.proyectokaraoke;
 
 import android.Manifest;
 import android.content.pm.PackageManager;
-import android.net.Uri;
+
+
+import android.graphics.Color;
+import android.location.Location;
+import android.support.annotation.NonNull;
+
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
+import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.maps.model.PolylineOptions;
 
-public class UbicameActivity extends FragmentActivity implements OnMapReadyCallback {
+public class UbicameActivity extends FragmentActivity implements OnMapReadyCallback, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
-      private GoogleMap mMap;
+    private GoogleMap mMap;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
-    private GoogleApiClient client;
+    private GoogleApiClient mGoogleApiClient;
+    private Location mLastLocation;
+    LatLng myUbicacion;
+    LatLng lima = new LatLng(-12.136605, -77.006035);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ubicame);
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
-        //mMap = mapFragment.getMap();
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+        if (mGoogleApiClient == null) {
+            mGoogleApiClient = new GoogleApiClient.Builder(this)
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(LocationServices.API)
+                    .build();
+        }
     }
 
-
-    /**
-     * Manipulates the map once available.
-     * This callback is triggered when the map is ready to be used.
-     * This is where we can add markers or lines, add listeners or move the camera. In this case,
-     * we just add a marker near Sydney, Australia.
-     * If Google Play services is not installed on the device, the user will be prompted to install
-     * it inside the SupportMapFragment. This method will only be triggered once the user has
-     * installed Google Play services and returned to the app.
-     */
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
-        // Add a marker in Sydney and move the camera
-        LatLng lima = new LatLng(-12.136605, -77.006035);
-        mMap.addMarker(new MarkerOptions().position(lima).title("Marker in Lima"));
+        mMap.addMarker(new MarkerOptions()
+                .position(lima)
+                .title("KARAOKE")
+                .snippet("Punto de Encuentro")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_dialog2)));
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-        mMap.setMyLocationEnabled(true);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setScrollGesturesEnabled(true);
         mMap.getUiSettings().setZoomGesturesEnabled(true);
         mMap.getUiSettings().setMapToolbarEnabled(true);
-
         mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(lima, 17.0f));
+        mMap.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+            @Override
+            public boolean onMarkerClick(Marker marker) {
+                Toast.makeText(UbicameActivity.this,marker.getSnippet(),Toast.LENGTH_SHORT).show();
+                return false;
+            }
+        });
+
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
+            Log.d("PROYECTO KARAOKE", "NO HAY PERMISOSSSSSSSS XXXXXXXXXXXXX_XXXXXXXXXXXXX_XXXXXXXXXXXX_XXXXXXXXXXXXXXX");
             return;
+        }
+        mMap.setMyLocationEnabled(true);
+
+    }
+
+    protected void onStart() {
+        mGoogleApiClient.connect();
+        super.onStart();
+    }
+
+    protected void onStop() {
+        mGoogleApiClient.disconnect();
+        super.onStop();
+    }
+
+    @Override
+    public void onConnected(Bundle connectionHint) {
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            Log.d("PROYECTO KARAOKE", "NO HAY PERMISOSSSSSSSS XXXXXXXXXXXXX_XXXXXXXXXXXXX_XXXXXXXXXXXX_XXXXXXXXXXXXXXX");
+
+            return;
+        }
+        mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
+                mGoogleApiClient);
+        if (mLastLocation != null) {
+            myUbicacion = new LatLng(mLastLocation.getLatitude(),mLastLocation.getLongitude());
+            mMap.addMarker(new MarkerOptions().position(myUbicacion).title("Mi Ubicación").snippet("Aqui te encuentras"));
+            mMap.addPolyline(new PolylineOptions()
+                    .add(myUbicacion, lima)
+                    .width(5)
+                    .color(Color.RED));
+
+            //'-12.059642, -77.035461
+            //'-12.1295, -77.0015
+            //LatLngBounds distancia = new LatLngBounds(lima,myUbicacion);
+            //mMap.moveCamera(CameraUpdateFactory.newLatLngBounds(distancia, 0));
+
+            mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(lima, 15));
+            mMap.animateCamera(CameraUpdateFactory.zoomIn());
+            mMap.animateCamera(CameraUpdateFactory.zoomTo(10), 6000, null);
+            CameraPosition cameraPosition = new CameraPosition.Builder()
+                    .target(myUbicacion)      // Sets the center of the map to Mountain View
+                    .zoom(17)                   // Sets the zoom
+                    .build();                   // Creates a CameraPosition from the builder
+            mMap.animateCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
+
+            //mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(myUbicacion, 17.0f));
+
         }
 
 
+
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Ubicame Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.android.proyectokaraoke/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
+    public void onConnectionSuspended(int i) {
+        Log.d("PROYECTO KARAOKE","PASO POR AQUI onConnectionSuspended XXXXXXXXXXXXX_XXXXXXXXXXXXX_XXXXXXXXXXXX_XXXXXXXXXXXXXXX");
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Ubicame Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app deep link URI is correct.
-                Uri.parse("android-app://com.example.android.proyectokaraoke/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+        Log.d("PROYECTO KARAOKE","PASO POR AQUI onConnectionFailed XXXXXXXXXXXXX_XXXXXXXXXXXXX_XXXXXXXXXXXX_XXXXXXXXXXXXXXX");
     }
 }
