@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DNI:"
+        android:text="@string/dni"
         android:id="@+id/textView1"
         android:layout_weight="1"
         android:textSize="25dp"
@@ -30,18 +30,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:lines="1"
-        android:id="@+id/editText1"
+        android:id="@+id/editTextDni"
         android:layout_weight="1"
         android:background="@drawable/edittextstyle"
         android:textSize="25dp"
-        android:text="10308414"
         android:layout_marginBottom="30dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
-        android:text="Nombres:"
+        android:text="@string/nombres"
         android:id="@+id/textView2"
         android:layout_weight="1"
         android:textColor="#FFFF"
@@ -53,18 +52,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:lines="1"
-        android:id="@+id/editText2"
+        android:id="@+id/editTextNombres"
         android:layout_weight="1"
         android:background="@drawable/edittextstyle"
         android:textSize="25dp"
-        android:text="Richard Antonio"
         android:layout_marginBottom="30dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
-        android:text="Apellidos:"
+        android:text="@string/apellidos"
         android:textColor="#FFFF"
         android:id="@+id/textView3"
         android:layout_weight="1"
@@ -76,18 +74,17 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:lines="1"
-        android:id="@+id/editText3"
+        android:id="@+id/editTextApellidos"
         android:layout_weight="1"
         android:background="@drawable/edittextstyle"
         android:textSize="25dp"
-        android:text="Zegarra Sánchez"
         android:layout_marginBottom="30dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
-        android:text="Teléfono:"
+        android:text="@string/tel_fono"
         android:textColor="#FFFF"
         android:id="@+id/textView4"
         android:layout_weight="1"
@@ -99,22 +96,22 @@
         android:layout_height="wrap_content"
         android:layout_gravity="left|center"
         android:lines="1"
-        android:id="@+id/editText4"
+        android:id="@+id/editTextTelefono"
         android:layout_weight="1"
         android:background="@drawable/edittextstyle"
         android:textSize="25dp"
-        android:text="940123072"
         android:layout_marginBottom="30dp"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Reservar"
+        android:text="@string/reservar"
         android:id="@+id/button"
         android:layout_gravity="right|center"
         android:layout_weight="1"
         android:textSize="25dp"
         android:textStyle="bold"
+        android:onClick="enviar"
         />
 
 

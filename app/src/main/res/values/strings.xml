@@ -23,4 +23,9 @@
     <string name="total_pedido">Total pedido: </string>
     <string name="confirmaci_n_de_pedido">Confirmación de Pedido</string>
     <string name="producto">Producto:</string>
+    <string name="reservar">Reservar</string>
+    <string name="tel_fono">Teléfono:</string>
+    <string name="apellidos">Apellidos:</string>
+    <string name="nombres">Nombres:</string>
+    <string name="dni">DNI:</string>
 </resources>

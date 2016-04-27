@@ -2,7 +2,8 @@
 <resources>
 
     <style name="AppTheme" parent="Base.AppTheme">
-
+        <item name="android:textColorPrimary">@android:color/white</item>
+        <item name="android:textColorSecondary">@android:color/white</item>
     </style>
 
     <style name="Base.AppTheme" parent="Theme.AppCompat.Light.NoActionBar">

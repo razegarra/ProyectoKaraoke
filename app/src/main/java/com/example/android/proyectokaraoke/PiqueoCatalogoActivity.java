@@ -58,6 +58,14 @@ public class PiqueoCatalogoActivity extends AppCompatActivity {
         toolbar.setSubtitle("Proyecto Karaoke");
         toolbar.setLogo(R.drawable.icon_dialog);
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
+
         //Obtención de la lista de piqueos
         PiqueoDao piqueoDAO = new PiqueoSQLite(this);
         piqueoLista = piqueoDAO.piqueoLista();
